@@ -22,7 +22,7 @@ Ubuntu 16.04.2 LTS
     * $WORK_GROUP: security group
     * $WORK_REMMINA_CONNECTION: path to connection file (most likely located in ~/.remmina)
 
-## Usage
+### Usage
 1. open terminal (Ctrl+Alt+t)
 2. type vpn_connect and enter
     * this starts the vpn connection similar to a Cisco connection in Windows
@@ -34,7 +34,7 @@ Ubuntu 16.04.2 LTS
 7. in the vpn connection terminal window type Ctrl+c
 8. finally type vpn_connect -o disconnect to close the vpn connection
 
-## Script
+### Script
 ```bash
 #!/bin/bash
 # Connect to work vpn
