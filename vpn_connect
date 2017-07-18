@@ -1,0 +1,41 @@
+#!/bin/bash
+# Connect to work vpn
+
+function usage
+{
+    echo -e "usage:\n-c option:\n\t{blank: vpn connect,\
+\n\t disconnect: vpn disconnect,\n\t remmina: remmina connect}\
+\n-h"
+}
+
+# Main
+
+option=
+
+while [ "$1" != "" ]; do
+    case $1 in
+	-o | option )    shift
+			  option=$1
+			  ;;
+	-h | --help )     usage
+			  exit
+			  ;;
+	* )               usage
+			  exit 1
+    esac
+    shift
+done
+
+if [ "$option" = "disconnect" ]; then
+    # Disconnect from vpn
+    sudo ifconfig tun1 down
+    sudo openvpn --rmtun --dev tun1
+elif [ "$option" = "remmina" ]; then
+    # Make Remmina connection
+    remmina -c $WORK_REMMINA_CONNECTION
+else
+    # Connect to vpn
+    sudo openvpn --mktun --dev tun1
+    sudo ifconfig tun1 up
+    sudo openconnect $WORK_SERVER --authgroup=$WORK_GROUP --interface=tun1
+fi
