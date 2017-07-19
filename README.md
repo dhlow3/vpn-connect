@@ -51,7 +51,7 @@ option=
 
 while [ "$1" != "" ]; do
     case $1 in
-	-o | option )    shift
+	-o | --option )    shift
 			  option=$1
 			  ;;
 	-h | --help )     usage
