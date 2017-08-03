@@ -3,9 +3,8 @@
 
 function usage
 {
-    echo -e "usage:\n-c option:\n\t{blank: vpn connect,\
-\n\t disconnect: vpn disconnect,\n\t remmina: remmina connect}\
-\n-h"
+    echo -e "usage:\n\twithout options: vpn connect
+\t-r: remmina connect\n\t-d: vpn disconnect\n-h: help"
 }
 
 # Main
@@ -14,9 +13,10 @@ option=
 
 while [ "$1" != "" ]; do
     case $1 in
-	-o | --option )    shift
-			  option=$1
+	-r          )     option=$1
 			  ;;
+	-d          )     option=$1
+	                  ;;
 	-h | --help )     usage
 			  exit
 			  ;;
@@ -26,11 +26,11 @@ while [ "$1" != "" ]; do
     shift
 done
 
-if [ "$option" = "disconnect" ]; then
+if [ "$option" = "-d" ]; then
     # Disconnect from vpn
     sudo ifconfig tun1 down
     sudo openvpn --rmtun --dev tun1
-elif [ "$option" = "remmina" ]; then
+elif [ "$option" = "-r" ]; then
     # Make Remmina connection
     remmina -c $WORK_REMMINA_CONNECTION
 else

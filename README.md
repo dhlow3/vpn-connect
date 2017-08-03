@@ -26,55 +26,9 @@ Ubuntu 16.04.2 LTS
 2. type vpn_connect and enter
     * this starts the vpn connection similar to a Cisco connection in Windows
 3. open 2nd terminal (Ctrl+Alt+t)
-4. type vpn_connect -o remmina
+4. type vpn_connect -r
     * this establishes the remmina connection similar to a Remote Desktop connection in Windows
 5. when done with connection, disconnect the remmina connection via the GUI
 6. if the remmina connection terminal has not returned to the prompt, type Ctrl+c
 7. in the vpn connection terminal window type Ctrl+c
-8. finally, type vpn_connect -o disconnect to close the vpn connection
-
-## Script
-```bash
-#!/bin/bash
-# Connect to work vpn
-
-function usage
-{
-    echo -e "usage:\n-c option:\n\t{blank: vpn connect,\
-\n\t disconnect: vpn disconnect,\n\t remmina: remmina connect}\
-\n-h"
-}
-
-# Main
-
-option=
-
-while [ "$1" != "" ]; do
-    case $1 in
-	-o | --option )    shift
-			  option=$1
-			  ;;
-	-h | --help )     usage
-			  exit
-			  ;;
-	* )               usage
-			  exit 1
-    esac
-    shift
-done
-
-if [ "$option" = "disconnect" ]; then
-    # Disconnect from vpn
-    sudo ifconfig tun1 down
-    sudo openvpn --rmtun --dev tun1
-elif [ "$option" = "remmina" ]; then
-    # Make Remmina connection
-    remmina -c $WORK_REMMINA_CONNECTION
-else
-    # Connect to vpn
-    sudo openvpn --mktun --dev tun1
-    sudo ifconfig tun1 up
-    sudo openconnect $WORK_SERVER --authgroup=$WORK_GROUP --interface=tun1
-fi
-
-```
+8. finally, type vpn_connect -d to disconnect the vpn connection
