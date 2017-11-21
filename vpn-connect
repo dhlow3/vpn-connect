@@ -1,5 +1,5 @@
 #!/bin/bash
-# Connect to work vpn
+# Connect to vpn
 
 function usage
 {
