@@ -10,13 +10,13 @@ Ubuntu 16.04.2 LTS
 * ifconfig: network configuration
 * openvpn: secure IP tunnel daemon
 * openconnect: Cisco AnyConnect VPN
+
 ## Setup
 1. configure remmina connection
 2. configure openconnect
-3. place vpn-connect script in ~/bin
+3. place vpn-connect script in ~/bin or other directory in $PATH
 4. give script permissions: chmod 755 vpn-connect
-5. add ~/bin to the environment variables' PATH
-6. add the following to environment variables or replace in script:
+5. add the following to environment variables or replace in script:
     * $WORK_SERVER: server url
     * $WORK_GROUP: security group
     * $WORK_REMMINA_CONNECTION: path to connection file (most likely located in ~/.remmina)

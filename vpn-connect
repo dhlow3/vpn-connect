@@ -3,8 +3,12 @@
 
 function usage
 {
-    echo -e "usage:\n\twithout options: vpn connect
-\t-r: remmina connect\n\t-d: vpn disconnect\n-h: help"
+    echo -e "Usage: " `basename "$0"`"\n"\
+    "      " `basename "$0"` " -r\n"\
+    "      " `basename "$0"` " -d\n\n"\
+    `basename "$0"`"\t\tcreates initial vpn connection\n"\
+    `basename "$0"`" -r\t\tcreates remmina connection\n"\
+    `basename "$0"`" -d\t\tcloses vpn connection"
 }
 
 # Main
